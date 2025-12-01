@@ -13,40 +13,53 @@ router = APIRouter(prefix="/sensors", tags=["Sensors"])
 
 # ID por defecto para la demo
 DEMO_ID = "MANILLA-DEMO-01"
+import traceback # <--- AGREGA ESTO ARRIBA
 
 @router.post("/data")
 def receive_sensor_data(
     data: SensorInput, 
     db: Session = Depends(get_db)
 ):
-    # 1. Realizar predicción
-    # (El modelo solo necesita los números, así que data.dict() funciona perfecto)
-    prediction_result = ml_service.predict(data.dict())
-    
-    # 2. Crear objeto para DB
-    # AQUÍ PONEMOS EL ID AUTOMÁTICO
-    db_sensor = SensorData(
-        bracelet_id=DEMO_ID,  # <--- ID Fijo
-        temperatura=data.temperatura,
-        humedad_relativa=data.humedad_relativa,
-        humedad_suelo=data.humedad_suelo,
-        rssi=data.rssi,
-        snr=data.snr,
-        prediction=prediction_result
-    )
-    
-    # 3. Guardar en DB
-    db.add(db_sensor)
-    db.commit()
-    db.refresh(db_sensor)
-    
-    # 4. Retornar
-    return {
-        "status": "ok",
-        "bracelet_id": db_sensor.bracelet_id,
-        "prediction": prediction_result,
-        "saved_at": db_sensor.created_at
-    }
+    try:
+        # 1. Predicción (La protegemos también)
+        try:
+            prediction_result = ml_service.predict(data.dict())
+        except Exception as e:
+            print(f"❌ Error en ML: {e}")
+            prediction_result = -1 # Valor de error controlado
+
+        # 2. Crear objeto
+        db_sensor = SensorData(
+            bracelet_id=DEMO_ID,
+            temperatura=data.temperatura,
+            humedad_relativa=data.humedad_relativa,
+            humedad_suelo=data.humedad_suelo,
+            rssi=data.rssi,
+            snr=data.snr,
+            prediction=prediction_result
+        )
+        
+        # 3. Guardar en DB (Aquí suele fallar)
+        db.add(db_sensor)
+        db.commit()
+        db.refresh(db_sensor)
+        
+        return {
+            "status": "ok",
+            "prediction": prediction_result,
+            "saved_at": db_sensor.created_at
+        }
+
+    except Exception as e:
+        db.rollback() # Cancelar la transacción fallida
+        error_msg = str(e)
+        print(f"❌ ERROR CRÍTICO DB: {traceback.format_exc()}") # Esto saldrá en los logs de Render
+        
+        # Devolver el error al usuario (Postman) para que lo veas
+        return {
+            "status": "error",
+            "detail": error_msg
+        }
 
 # --- El endpoint Monitor queda igual, pero ahora solo verá la MANILLA-DEMO-01 ---
 OFFLINE_THRESHOLD_SECONDS = 120 
@@ -77,4 +90,5 @@ def monitor_devices(db: Session = Depends(get_db)):
                 status_label=label
             )
         )
+
     return devices_status
