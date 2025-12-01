@@ -47,7 +47,6 @@
         }
     </script>
     <style>
-        /* Ocultar scrollbar para estética */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: #1E90FF; border-radius: 4px; }
@@ -68,19 +67,18 @@
                     <i class="ph ph-fingerprint text-3xl text-white"></i>
                 </div>
             </div>
-            <h2 class="text-2xl font-bold mb-2">Acceso Seguro SIESPRO</h2>
-            <p class="text-textoGray text-sm mb-8">Ingresa un usuario para generar tu sesión</p>
+            <h2 class="text-2xl font-bold mb-2">Acceso SIESPRO</h2>
+            <p class="text-textoGray text-sm mb-8">Ingresa un nombre para visualizar el Dashboard</p>
             
             <form id="login-form" class="space-y-4">
-                <input type="text" id="username" placeholder="Nombre de usuario (ej: AdminDemo)" required
+                <input type="text" id="username" placeholder="Tu Nombre (ej: Visitante)" required
                     class="w-full bg-[#0F172A] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primario focus:ring-1 focus:ring-primario transition-all placeholder-gray-600">
                 
                 <button type="submit" 
                     class="w-full py-3 bg-gradient-to-r from-primario to-secundario text-fondo font-bold rounded-lg hover:shadow-[0_0_20px_rgba(0,191,255,0.4)] transition-all">
-                    INGRESAR AL SISTEMA
+                    INGRESAR
                 </button>
             </form>
-            <p id="login-error" class="mt-4 text-alerta text-xs hidden"></p>
         </div>
     </section>
 
@@ -137,66 +135,44 @@
                         
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                             <div class="bg-[#151E32] p-5 rounded-xl border border-white/5 relative overflow-hidden">
-                                <div class="absolute right-0 top-0 p-4 opacity-10">
-                                    <i class="ph ph-student text-6xl text-primario"></i>
-                                </div>
+                                <div class="absolute right-0 top-0 p-4 opacity-10"><i class="ph ph-student text-6xl text-primario"></i></div>
                                 <p class="text-textoGray text-sm">Estado Normal (Adentro)</p>
                                 <h3 id="count-safe" class="text-3xl font-bold text-white mt-1">--</h3>
-                                <div class="mt-4 flex items-center gap-2 text-xs text-success bg-success/10 w-fit px-2 py-1 rounded">
-                                    <i class="ph ph-shield-check"></i> Seguros
-                                </div>
+                                <div class="mt-4 flex items-center gap-2 text-xs text-success bg-success/10 w-fit px-2 py-1 rounded"><i class="ph ph-shield-check"></i> Seguros</div>
                             </div>
 
                             <div class="bg-[#151E32] p-5 rounded-xl border border-white/5 relative overflow-hidden">
-                                <div class="absolute right-0 top-0 p-4 opacity-10">
-                                    <i class="ph ph-siren text-6xl text-alerta"></i>
-                                </div>
+                                <div class="absolute right-0 top-0 p-4 opacity-10"><i class="ph ph-siren text-6xl text-alerta"></i></div>
                                 <p class="text-textoGray text-sm">Alertas (Afuera)</p>
                                 <h3 id="count-danger" class="text-3xl font-bold text-alerta mt-1">--</h3>
-                                <div id="alert-badge" class="mt-4 flex items-center gap-2 text-xs text-textoGray bg-white/5 w-fit px-2 py-1 rounded">
-                                    <i class="ph ph-warning"></i> Sin incidentes
-                                </div>
+                                <div id="alert-badge" class="mt-4 flex items-center gap-2 text-xs text-textoGray bg-white/5 w-fit px-2 py-1 rounded"><i class="ph ph-warning"></i> Sin incidentes</div>
                             </div>
 
                             <div class="bg-[#151E32] p-5 rounded-xl border border-white/5 relative overflow-hidden">
-                                <div class="absolute right-0 top-0 p-4 opacity-10">
-                                    <i class="ph ph-cpu text-6xl text-acento"></i>
-                                </div>
+                                <div class="absolute right-0 top-0 p-4 opacity-10"><i class="ph ph-cpu text-6xl text-acento"></i></div>
                                 <p class="text-textoGray text-sm">Random Forest AI</p>
                                 <h3 class="text-3xl font-bold text-acento mt-1">89.0%</h3>
-                                <div class="mt-4 flex items-center gap-2 text-xs text-acento bg-acento/10 w-fit px-2 py-1 rounded">
-                                    <i class="ph ph-check-circle"></i> Precisión Modelo
-                                </div>
+                                <div class="mt-4 flex items-center gap-2 text-xs text-acento bg-acento/10 w-fit px-2 py-1 rounded"><i class="ph ph-check-circle"></i> Precisión Modelo</div>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[400px]">
-                            
                             <div class="lg:col-span-2 bg-[#151E32] rounded-xl border border-white/5 relative overflow-hidden flex items-center justify-center">
                                 <div class="absolute top-4 left-4 z-20 bg-black/50 backdrop-blur px-3 py-1 rounded border border-white/10">
                                     <span class="text-xs font-mono text-white">● MONITOR VISUAL</span>
                                 </div>
-                                
-                                <div class="absolute inset-0 opacity-20" 
-                                     style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 50px 50px;">
-                                </div>
+                                <div class="absolute inset-0 opacity-20" style="background-image: linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px); background-size: 50px 50px;"></div>
                                 <div class="absolute w-full h-1 bg-acento/30 shadow-[0_0_20px_#00FFFF] animate-scan-line z-10"></div>
-
                                 <div id="map-container" class="relative w-full h-full">
-                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-600 text-sm">
-                                        Esperando datos...
-                                    </div>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-600 text-sm">Esperando datos...</div>
                                 </div>
                             </div>
 
                             <div class="bg-[#151E32] rounded-xl border border-white/5 p-4 flex flex-col overflow-hidden">
                                 <h4 class="text-white font-bold mb-4 flex justify-between items-center">
-                                    Activity Log
-                                    <span class="text-[10px] bg-white/10 px-2 py-0.5 rounded text-textoGray">Live</span>
+                                    Activity Log <span class="text-[10px] bg-white/10 px-2 py-0.5 rounded text-textoGray">Live</span>
                                 </h4>
-                                
-                                <div class="relative flex-1 overflow-y-auto" id="log-container">
-                                    </div>
+                                <div class="relative flex-1 overflow-y-auto" id="log-container"></div>
                             </div>
                         </div>
 
@@ -208,61 +184,33 @@
 
     <script>
         // ================= CONFIGURACIÓN =================
-        // ⚠️ PEGA AQUÍ TU URL DE RENDER (SIN LA BARRA AL FINAL)
-        const API_URL = "https://siespro.onrender.com/"; 
+        // ⚠️ PEGA TU URL DE RENDER AQUÍ (Sin slash al final)
+        const API_URL = "https://siespro.onrender.com"; 
 
         // ================= ESTADO =================
         const loginSection = document.getElementById('login-section');
         const dashboardSection = document.getElementById('dashboard-section');
-        let apiKey = localStorage.getItem('siespro_api_key');
         let username = localStorage.getItem('siespro_username');
 
-        // ================= FUNCIONES AUTH =================
+        // ================= FUNCIONES AUTH (SIMULADA) =================
         function checkAuth() {
-            if (apiKey) {
+            if (username) {
                 showDashboard();
             } else {
                 loginSection.classList.remove('hidden-section');
             }
         }
 
-        document.getElementById('login-form').addEventListener('submit', async (e) => {
+        document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
+            // Simplemente guardamos el nombre y entramos
             const user = document.getElementById('username').value;
-            const errorMsg = document.getElementById('login-error');
-            errorMsg.classList.add('hidden');
-            errorMsg.innerText = '';
-
-            try {
-                // Intentamos crear el usuario para obtener la key
-                const response = await fetch(`${API_URL}/auth/create-user`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username: user })
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    apiKey = data.api_key;
-                    username = data.username;
-                    localStorage.setItem('siespro_api_key', apiKey);
-                    localStorage.setItem('siespro_username', username);
-                    showDashboard();
-                } else {
-                    // Si falla (ej: usuario ya existe), pedimos que ingrese otro nombre para la demo
-                    const err = await response.json();
-                    errorMsg.innerText = "El usuario ya existe. Para esta demo, usa un nombre diferente.";
-                    errorMsg.classList.remove('hidden');
-                }
-            } catch (error) {
-                errorMsg.innerText = "Error de conexión con el servidor. Verifica la URL.";
-                errorMsg.classList.remove('hidden');
-                console.error(error);
-            }
+            username = user;
+            localStorage.setItem('siespro_username', username);
+            showDashboard();
         });
 
         function logout() {
-            localStorage.removeItem('siespro_api_key');
             localStorage.removeItem('siespro_username');
             location.reload();
         }
@@ -277,15 +225,15 @@
         // ================= FUNCIONES DASHBOARD =================
         async function fetchMonitorData() {
             try {
-                const response = await fetch(`${API_URL}/sensors/monitor`, {
-                    headers: { 'x-api-key': apiKey }
-                });
-                if (response.status === 401) { logout(); return; } // Token inválido
+                // Hacemos el GET normal, sin headers de API Key
+                const response = await fetch(`${API_URL}/sensors/monitor`);
+                
+                if (!response.ok) throw new Error("Error en API");
                 return await response.json();
             } catch (error) {
                 console.error("Error fetching data:", error);
-                document.getElementById('connection-status').innerText = "Desconectado";
-                document.getElementById('connection-status').classList.add('text-alerta');
+                document.getElementById('connection-status').innerText = "Reconectando...";
+                document.getElementById('connection-status').className = "text-alerta text-sm animate-pulse";
                 return null;
             }
         }
@@ -293,14 +241,16 @@
         function updateUI(devices) {
             if (!devices) return;
 
-            // Contadores
+            // Restaurar estado visual de conexión
+            document.getElementById('connection-status').innerText = "Conectado al servidor";
+            document.getElementById('connection-status').className = "text-textoGray text-sm";
+
             const safeCount = devices.filter(d => d.current_prediction === 0).length;
             const dangerCount = devices.filter(d => d.current_prediction === 1).length;
 
             document.getElementById('count-safe').innerText = safeCount;
             document.getElementById('count-danger').innerText = dangerCount;
 
-            // Badge Alerta
             const alertBadge = document.getElementById('alert-badge');
             if (dangerCount > 0) {
                 alertBadge.className = "mt-4 flex items-center gap-2 text-xs text-alerta bg-alerta/10 w-fit px-2 py-1 rounded animate-pulse";
@@ -310,43 +260,38 @@
                 alertBadge.innerHTML = `<i class="ph ph-check"></i> Zona segura`;
             }
 
-            // Actualizar Log y Mapa
             const logContainer = document.getElementById('log-container');
             const mapContainer = document.getElementById('map-container');
-            
-            // Limpiar log y mapa para simplificar (en prod haríamos append)
             logContainer.innerHTML = ''; 
             mapContainer.innerHTML = ''; 
 
-            devices.forEach((device, index) => {
-                // 1. Agregar al Log
+            devices.forEach((device) => {
                 const time = new Date(device.last_seen).toLocaleTimeString();
                 const isDanger = device.current_prediction === 1;
                 const statusColor = isDanger ? 'bg-alerta' : 'bg-success';
-                const statusText = isDanger ? 'SALIDA DETECTADA' : 'Estado Normal';
                 const textColor = isDanger ? 'text-alerta font-bold' : 'text-white';
 
+                // Log Item
                 const logItem = `
                     <div class="flex items-center gap-3 text-xs p-2 hover:bg-white/5 rounded transition-colors border-b border-white/5">
                         <div class="w-2 h-2 rounded-full ${statusColor} ${isDanger ? 'animate-pulse' : ''}"></div>
                         <span class="text-gray-400">${time}</span>
                         <div class="flex flex-col">
                             <span class="${textColor}">${device.bracelet_id}</span>
-                            <span class="text-[10px] text-gray-500">${statusText}</span>
+                            <span class="text-[10px] text-gray-500">${isDanger ? 'FUERA DE ZONA' : 'EN ZONA'}</span>
                         </div>
                     </div>
                 `;
                 logContainer.innerHTML += logItem;
 
-                // 2. Agregar al Mapa (Posiciones aleatorias simuladas para demo visual)
-                // Usamos el ID para generar una posición "fija" consistente
+                // Map Item
                 const pseudoRandom = (str) => {
                     let hash = 0;
                     for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
                     return Math.abs(hash);
                 };
                 
-                const topPos = (pseudoRandom(device.bracelet_id) % 60) + 20; // Entre 20% y 80%
+                const topPos = (pseudoRandom(device.bracelet_id) % 60) + 20;
                 const leftPos = (pseudoRandom(device.bracelet_id + "x") % 60) + 20;
 
                 const dot = document.createElement('div');
@@ -354,14 +299,11 @@
                 dot.style.top = `${topPos}%`;
                 dot.style.left = `${leftPos}%`;
                 
-                // Tooltip simple
-                dot.title = `${device.bracelet_id}: ${isDanger ? 'AFUERA' : 'ADENTRO'}`;
-                
-                // Punto estático encima del ping
                 const dotStatic = document.createElement('div');
-                dotStatic.className = `absolute w-4 h-4 rounded-full border-2 border-[#0B1120] ${isDanger ? 'bg-alerta' : 'bg-primario'}`;
+                dotStatic.className = `absolute w-4 h-4 rounded-full border-2 border-[#0B1120] ${isDanger ? 'bg-alerta' : 'bg-primario'} cursor-pointer hover:scale-125 transition-transform`;
                 dotStatic.style.top = `${topPos}%`;
                 dotStatic.style.left = `${leftPos}%`;
+                dotStatic.title = `${device.bracelet_id}`;
 
                 mapContainer.appendChild(dot);
                 mapContainer.appendChild(dotStatic);
@@ -369,20 +311,14 @@
         }
 
         function startPolling() {
-            // Primera llamada inmediata
             fetchMonitorData().then(updateUI);
-            
-            // Polling cada 3 segundos
             setInterval(async () => {
                 const data = await fetchMonitorData();
                 updateUI(data);
             }, 3000);
         }
 
-        // Iniciar
         checkAuth();
-
     </script>
 </body>
-
 </html>
