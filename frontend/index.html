@@ -203,7 +203,6 @@
 
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            // Simplemente guardamos el nombre y entramos
             const user = document.getElementById('username').value;
             username = user;
             localStorage.setItem('siespro_username', username);
@@ -225,7 +224,6 @@
         // ================= FUNCIONES DASHBOARD =================
         async function fetchMonitorData() {
             try {
-                // Hacemos el GET normal, sin headers de API Key
                 const response = await fetch(`${API_URL}/sensors/monitor`);
                 
                 if (!response.ok) throw new Error("Error en API");
@@ -241,12 +239,14 @@
         function updateUI(devices) {
             if (!devices) return;
 
-            // Restaurar estado visual de conexión
             document.getElementById('connection-status').innerText = "Conectado al servidor";
             document.getElementById('connection-status').className = "text-textoGray text-sm";
 
-            const safeCount = devices.filter(d => d.current_prediction === 0).length;
-            const dangerCount = devices.filter(d => d.current_prediction === 1).length;
+            // === CAMBIO DE LÓGICA AQUÍ ===
+            // 0 es Peligro (Afuera), 1 es Seguro (Adentro)
+            
+            const safeCount = devices.filter(d => d.current_prediction === 1).length; // 1 = Adentro
+            const dangerCount = devices.filter(d => d.current_prediction === 0).length; // 0 = Afuera
 
             document.getElementById('count-safe').innerText = safeCount;
             document.getElementById('count-danger').innerText = dangerCount;
@@ -267,7 +267,10 @@
 
             devices.forEach((device) => {
                 const time = new Date(device.last_seen).toLocaleTimeString();
-                const isDanger = device.current_prediction === 1;
+                
+                // === CAMBIO DE LÓGICA AQUÍ ===
+                const isDanger = device.current_prediction === 0; // Si es 0, es PELIGRO
+
                 const statusColor = isDanger ? 'bg-alerta' : 'bg-success';
                 const textColor = isDanger ? 'text-alerta font-bold' : 'text-white';
 
